@@ -1,0 +1,75 @@
+<div class="container">
+  <!-- Title -->
+  <h2 class="title">📊 Students Report </h2>
+
+  <!-- Filters Section -->
+  <div class="filters">
+    <div class="filter-group">
+      <label for="school">🏫 School</label>
+      <select id="school" [(ngModel)]="selectedSchool" (change)="loadYears()">
+        <option value="" disabled selected>🏫 Select School</option>
+        <option *ngFor="let school of schools" [value]="school.id">{{ school.name }}</option>
+      </select>
+    </div>
+  
+    <div class="filter-group">
+      <label for="year">📅 Year</label>
+      <select id="year" [(ngModel)]="selectedYear" (change)="loadGrades()" [disabled]="!selectedSchool">
+        <option value="" disabled selected>📅 Select Year</option>
+        <option *ngFor="let year of years" [value]="year.id">{{ year.yearNumber }}</option>
+      </select>
+    </div>
+  
+    <div class="filter-group">
+      <label for="grade">📚 Grade</label>
+      <select id="grade" [(ngModel)]="selectedGrade" (change)="loadClasses()" [disabled]="!selectedYear">
+        <option value="" disabled selected>📚 Select Grade</option>
+        <option *ngFor="let grade of grades" [value]="grade.id">{{ grade.name }}</option>
+      </select>
+    </div>
+  
+    <div class="filter-group">
+      <label for="class">🏠 Class</label>
+      <select id="class" [(ngModel)]="selectedClass" (change)="loadStudents()" [disabled]="!selectedGrade">
+        <option value="" disabled selected>🏠 Select Class</option>
+        <option *ngFor="let classItem of classes" [value]="classItem.id">{{ classItem.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Export Buttons -->
+  <div class="export-buttons">
+      <button (click)="exportToExcel()" class="btn-excel">📗 Export to Excel </button>
+      <button (click)="exportToPDF()" class="btn-pdf">📕 Export to PDF </button>
+  </div>
+
+  <!-- Table Information -->
+  <div class="table-info">
+      <p><strong>📌 Number of Students:</strong> {{ students.length }}</p>
+      <p><strong>🏠 Class:</strong> {{ getSelectedClassName() }}</p>
+  </div>
+
+  <!-- Students Table -->
+  <div class="table-container">
+      <table id="studentsTable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Nationality</th>
+            <th>Gender</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students; let i = index">
+            <td>{{ student.no }}</td>
+            <td>{{ student.fullName }}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.nationality }}</td>
+            <td>{{ student.gender }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

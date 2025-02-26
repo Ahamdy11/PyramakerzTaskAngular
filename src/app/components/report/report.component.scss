@@ -1,0 +1,191 @@
+// 🎨 الألوان الأساسية
+$primary-color: #ff7f0e;
+$secondary-color: #f5f5f5;
+$border-color: #ddd;
+$text-color: #333;
+$hover-color: #ffe5d0;
+$background-color: #ffffff;
+
+// 🖋️ الخطوط
+$font-family: "Arial", sans-serif;
+
+// 📌 الحاوية الرئيسية
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background: $background-color;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: $font-family;
+
+  // 🎯 العنوان
+  .title {
+    text-align: center;
+    font-size: 26px;
+    color: $primary-color;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  // 🔍 قسم الفلاتر
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: $text-color;
+        font-size: 16px;
+      }
+
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid $border-color;
+        border-radius: 6px;
+        background: $secondary-color;
+        font-size: 16px;
+        color: $text-color;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:focus {
+          border-color: $primary-color;
+          outline: none;
+          box-shadow: 0 0 8px rgba($primary-color, 0.6);
+        }
+
+        &:disabled {
+          background: lighten($secondary-color, 10%);
+          cursor: not-allowed;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  // 📊 تصميم الجدول
+  .table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid $border-color;
+      border-radius: 8px;
+      overflow: hidden;
+
+      // 🎯 رأس الجدول
+      thead {
+        background: $primary-color;
+        color: white;
+        font-size: 18px;
+        text-transform: uppercase;
+
+        tr {
+          th {
+            padding: 14px;
+            text-align: center;
+            border: 2px solid $border-color;
+          }
+        }
+      }
+
+      // 📝 جسم الجدول
+      tbody {
+        tr {
+          border-bottom: 2px solid $border-color;
+          transition: background 0.2s ease-in-out;
+
+          &:hover {
+            background: $hover-color;
+          }
+
+          td {
+            padding: 12px;
+            font-size: 16px;
+            color: $text-color;
+            text-align: center;
+            border: 2px solid $border-color;
+          }
+        }
+      }
+    }
+  }
+
+  // 🔽 أزرار التصدير (Excel & PDF)
+  .export-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    button {
+      padding: 12px 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease-in-out;
+
+      &.btn-excel {
+        background: #2ecc71;
+        color: white;
+
+        &:hover {
+          background: #27ae60;
+        }
+      }
+
+      &.btn-pdf {
+        background: #e74c3c;
+        color: white;
+
+        &:hover {
+          background: #c0392b;
+        }
+      }
+    }
+  }
+}
+
+// 📱 تحسين التصميم للأجهزة الصغيرة
+@media (max-width: 600px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .export-buttons {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      width: 80%;
+    }
+  }
+  .table-info {
+    display: flex;
+    justify-content: space-between; /* توزيع العناصر بالتساوي */
+    align-items: center; /* محاذاة العناصر في المنتصف رأسيًا */
+    background: #f5f5f5;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+}
