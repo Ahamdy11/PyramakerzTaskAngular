@@ -41,35 +41,68 @@
   <div class="export-buttons">
       <button (click)="exportToExcel()" class="btn-excel">📗 Export to Excel </button>
       <button (click)="exportToPDF()" class="btn-pdf">📕 Export to PDF </button>
+      <button (click)="exportToPrint()" class="btn-print">🖨️ Print Report</button>  
   </div>
 
-  <!-- Table Information -->
-  <div class="table-info">
-      <p><strong>📌 Number of Students:</strong> {{ students.length }}</p>
-      <p><strong>🏠 Class:</strong> {{ getSelectedClassName() }}</p>
+  <div id="reportContent">
+    <div class="report-container" *ngIf="students.length > 0">
+      <!-- Vision Section -->
+      <div class="vision-container">
+        <!-- Arabic Vision -->
+        <div class="vision-text ar">
+          <h3>الرؤية</h3>
+          <p>رؤيتنا هي السعي لتحقيق بيئة تعليمية آمنة تحترم الانضباط <br>
+             وتهدف إلى بناء شخصية قوية بالتعاون بين الأسرة والمجتمع.</p>
+        </div>
+  
+        <!-- Logo -->
+        <div class="vision-logo">
+          <img src="assets/images/Logo.png" alt="School Logo">
+        </div>
+  
+        <!-- English Vision -->
+        <div class="vision-text en">
+          <h3>Vision</h3>
+          <p>Our vision is to strive to become a safe learning environment <br>
+             that respects discipline and builds a strong character <br>
+             in cooperation with families and the community.</p>
+        </div>
+      </div>
+  
+      <!-- Class & Number of Students -->
+      <div class="class-info">
+        <p><strong>Class:</strong> {{ getSelectedClassName() }}</p>
+        <p><strong>Number of Students:</strong> {{ students.length }}</p>
+      </div>
+  
+      <!-- Date -->
+      <div class="report-date">
+        <p><strong>Date:</strong> {{ currentDate }}</p>
+      </div>
+  
+      <!-- Students Table -->
+      <div class="table-container">
+        <table id="studentsTable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Nationality</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ student.fullName }}</td>
+              <td>{{ student.mobile }}</td>
+              <td>{{ student.nationality }}</td>
+              <td>{{ student.gender }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-
-  <!-- Students Table -->
-  <div class="table-container">
-      <table id="studentsTable">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Mobile</th>
-            <th>Nationality</th>
-            <th>Gender</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let student of students; let i = index">
-            <td>{{ student.no }}</td>
-            <td>{{ student.fullName }}</td>
-            <td>{{ student.mobile }}</td>
-            <td>{{ student.nationality }}</td>
-            <td>{{ student.gender }}</td>
-          </tr>
-        </tbody>
-      </table>
-  </div>
-</div>
+  
